@@ -1,0 +1,118 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Storage"
+        xmlns:Models="clr-namespace:Storage.Models" xmlns:Properties="clr-namespace:Storage.Properties" x:Class="Storage.MainWindow"
+        mc:Ignorable="d"
+        Title="Storage" Height="500" Width="700" WindowStartupLocation="CenterScreen" Background="#FF131325" MinHeight="300" MinWidth="510">
+    <Grid>
+        <TabControl x:Name="TabControl" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Margin="10,10,10,40" >
+            <TabItem Header="Accepted" BorderBrush="{x:Null}" Foreground="Black" Background="White" >
+                <Grid Background="#FF131325">
+                    <DataGrid AutoGenerateColumns="False" x:Name="AcceptedDataGrid" Margin="0,0,0,42" Background="#FF131325" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="40"/>
+                            <DataGridTextColumn Binding="{Binding NameItem}" Header="Name" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding Count}" Header="Count" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding DateCreate}" Header="Date"/>
+                        </DataGrid.Columns>
+                        <DataGrid.DataContext>
+                            <Models:Accepted/>
+                        </DataGrid.DataContext>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Delete" Click="DeleteMenuButton_Click"></MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                    <Label x:Name="NameLabel" Content="Name:" Margin="10,0,0,10" Foreground="White" VerticalAlignment="Bottom" Height="24" Width="45" HorizontalAlignment="Left" />
+                    <TextBox x:Name="NameTextBox" Height="24" Margin="60,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="100" HorizontalAlignment="Left" FontSize="14"/>
+                    <Label x:Name="CountLabel" Content="Count:" Margin="165,0,0,10" VerticalAlignment="Bottom" Foreground="White" Height="24" Width="45" HorizontalAlignment="Left" />
+                    <TextBox x:Name="CountTextBox" Height="24" Margin="215,0,0,10" TextWrapping="Wrap" Text="0" VerticalAlignment="Bottom" Width="50" HorizontalAlignment="Left" FontSize="14"/>
+                    <Label x:Name="PriceLabel" Content="Price:" Margin="270,0,0,10" VerticalAlignment="Bottom" Foreground="White" Height="24" Width="40" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="PriceTextBox" Height="24" Margin="315,0,0,10" TextWrapping="Wrap" Text="0" VerticalAlignment="Bottom" Width="50" HorizontalAlignment="Left" FontSize="14"/>
+                    <Button x:Name="AddButton" Content="Add" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="80" Click="AddButton_Click" HorizontalAlignment="Right" Height="24"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Storage" BorderBrush="{x:Null}" Foreground="Black" Background="White" >
+                <Grid Background="#FF131325">
+                    <DataGrid  AutoGenerateColumns="False" x:Name="StorageDataGrid" Margin="0,0,0,40" Background="#FF131325" IsReadOnly="True">
+                        <DataGrid.DataContext>
+                            <Models:Storage/>
+                        </DataGrid.DataContext>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="40"/>
+                            <DataGridTextColumn Binding="{Binding NameItem}" Header="Name" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding Count}" Header="Count" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding DateCreate}" Header="Date" Width="160"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Sale" Click="SaleMenuButton_Click"></MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                    <Button x:Name="SaleButton" Content="Sale" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Height="22" Click="SaleMenuButton_Click"/>
+                    <Properties:UserControl1 HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                    <Label x:Name="TotalPriceStopage" Content="Total price: " HorizontalAlignment="Left" Margin="536,355,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sold Out" BorderBrush="{x:Null}" Foreground="Black" Background="White" >
+                <Grid Background="#FF131325">
+                    <DataGrid AutoGenerateColumns="False" x:Name="SoldOutDataGrid" Margin="0,0,0,40" Background="#FF131325" IsReadOnly="True">
+                        <DataGrid.DataContext>
+                            <Models:SoldOut/>
+                        </DataGrid.DataContext>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="40"/>
+                            <DataGridTextColumn Binding="{Binding NameItem}" Header="Name" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding Count}" Header="Count" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding DateCreate}" Header="Date" Width="160"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Return" Click="ReturnMenuButton_Click"></MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                    <Button x:Name="ReturnButton" Content="Return" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Click="ReturnMenuButton_Click"/>
+                    <Label x:Name="TotalPriceSoldOut" Content="Total price: " HorizontalAlignment="Left" Margin="536,355,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Report" BorderBrush="{x:Null}" Foreground="Black" Background="White">
+                <Grid Background="#FF131325">
+                    <DataGrid AutoGenerateColumns="False" x:Name="ReportDataGrid" Margin="0,0,0,40" Background="#FF131325" IsReadOnly="True">
+                        <DataGrid.DataContext>
+                            <Models:ReportItem/>
+                        </DataGrid.DataContext>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding NameItem}" Header="Name" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding Count}" Header="Count" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding DateCreate}" Header="Date" Width="160"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <ComboBox x:Name="ReportComboBox" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Width="100" SelectedIndex="0">
+                        <ComboBoxItem Content="All"/>
+                        <ComboBoxItem Content="Accepted"/>
+                        <ComboBoxItem Content="Storage"/>
+                        <ComboBoxItem Content="SoldOut"/>
+                    </ComboBox>
+                    <Button x:Name="ReportButton" Content="Report" HorizontalAlignment="Left" Margin="450,0,0,10" VerticalAlignment="Bottom" Width="75" Click="ReportButton_Click" Height="24"/>
+                    <Label x:Name="From" Content="From:" HorizontalAlignment="Left" Margin="150,0,0,11" VerticalAlignment="Bottom" Background="{x:Null}" Height="24" Foreground="White"/>
+                    <DatePicker x:Name="FromDatePicker" HorizontalAlignment="Left" Margin="190,0,0,10" VerticalAlignment="Bottom" Background="Black" BorderBrush="{x:Null}" IsTodayHighlighted="True"/>
+                    <Label x:Name="To" Content="To:" HorizontalAlignment="Left" Margin="300,0,0,9" VerticalAlignment="Bottom" Foreground="White" Background="{x:Null}" Height="24"/>
+                    <DatePicker x:Name="ToDatePicker"  HorizontalAlignment="Left" Margin="325,0,0,10" VerticalAlignment="Bottom" BorderBrush="{x:Null}"/>
+                    <Label x:Name="TotalPriceReport" Content="Total price: " HorizontalAlignment="Left" Margin="536,355,0,0" VerticalAlignment="Top" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="RefreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Click="RefreshButton_Click"/>
+    </Grid>
+</Window>
