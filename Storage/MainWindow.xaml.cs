@@ -1,4 +1,5 @@
-﻿using Storage.Models;
+﻿using Storage.Database;
+using Storage.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,35 +14,51 @@ namespace Storage
     public partial class MainWindow : Window
     {
 
-        private StorageContext _db;
+        private readonly StorageContext _db;
         public MainWindow()
         {
             InitializeComponent();
-            //Closing += MainWindow_Closing;
             Loaded += MainWindow_Loaded;
+            System.Data.Entity.Database.SetInitializer(new DataBaseInitializer());
+            try
+            {
+                _db = new StorageContext("StorageContext");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("DataBase Init Error");
+                Close();
+            }
         }
         private void Refresh()
         {
-            double totalPriceSt = 0, totalPriceSo = 0;
-            _db.SaveChanges();
-            _db.Accepted.Load();
-            _db.Storage.Load();
-            _db.SoldOut.Load();
-            AcceptedDataGrid.ItemsSource = null;
-            AcceptedDataGrid.ItemsSource = _db.Accepted.Local.ToList();
-            StorageDataGrid.ItemsSource = null;
-            StorageDataGrid.ItemsSource = _db.Storage.Local.ToList();
-            totalPriceSt += _db.Storage.Local.Sum(st => st.Price * st.Count);
-            TotalPriceStopage.Content = "Total price: " + totalPriceSt;
-            SoldOutDataGrid.ItemsSource = null;
-            SoldOutDataGrid.ItemsSource = _db.SoldOut.Local.ToList();
-            totalPriceSo += _db.SoldOut.Local.Sum(so => so.Price * so.Count);
-            TotalPriceSoldOut.Content = "Total price: " + totalPriceSo;
+            try
+            {
+                double totalPriceSt = 0, totalPriceSo = 0;
+                _db.SaveChanges();
+                _db.Accepted.Load();
+                _db.Storage.Load();
+                _db.SoldOut.Load();
+                AcceptedDataGrid.ItemsSource = null;
+                AcceptedDataGrid.ItemsSource = _db.Accepted.Local.ToList();
+                StorageDataGrid.ItemsSource = null;
+                StorageDataGrid.ItemsSource = _db.Storage.Local.ToList();
+                totalPriceSt += _db.Storage.Local.Sum(st => st.Price * st.Count);
+                TotalPriceStopage.Content = "Total price: " + totalPriceSt;
+                SoldOutDataGrid.ItemsSource = null;
+                SoldOutDataGrid.ItemsSource = _db.SoldOut.Local.ToList();
+                totalPriceSo += _db.SoldOut.Local.Sum(so => so.Price * so.Count);
+                TotalPriceSoldOut.Content = "Total price: " + totalPriceSo;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error Refresh DB\n" + e);
+                Close();
+            }
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _db = new StorageContext();
             Refresh();
         }
 
