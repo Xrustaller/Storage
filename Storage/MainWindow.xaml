@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Storage"
         xmlns:Models="clr-namespace:Storage.Models" xmlns:Properties="clr-namespace:Storage.Properties" x:Class="Storage.MainWindow"
         mc:Ignorable="d"
-        Title="Storage" Height="500" Width="700" WindowStartupLocation="CenterScreen" Background="#FF131325" MinHeight="300" MinWidth="510">
+        Title="Storage" Height="500" Width="800" WindowStartupLocation="CenterScreen" Background="#FF131325" MinHeight="300" MinWidth="750">
     <Grid>
         <TabControl x:Name="TabControl" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Margin="10,10,10,10" >
             <TabItem Header="Accepted" BorderBrush="{x:Null}" Foreground="Black" Background="White" >
@@ -60,7 +60,7 @@
                     </DataGrid>
                     <Button x:Name="SaleButton" Content="Sale" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Height="22" Click="SaleMenuButton_Click"/>
                     <Properties:UserControl1 HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-                    <Label x:Name="TotalPriceStopage" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                    <Label x:Name="TotalPriceStopage" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="150" Background="{x:Null}" Foreground="White" FontSize="14"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Sold Out" BorderBrush="{x:Null}" Foreground="Black" Background="White" >
@@ -84,7 +84,7 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
                     <Button x:Name="ReturnButton" Content="Return" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Click="ReturnMenuButton_Click"/>
-                    <Label x:Name="TotalPriceSoldOut" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                    <Label x:Name="TotalPriceSoldOut" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="150" Background="{x:Null}" Foreground="White" FontSize="14"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Report" BorderBrush="{x:Null}" Foreground="Black" Background="White">
@@ -112,7 +112,7 @@
                     <DatePicker x:Name="FromDatePicker" HorizontalAlignment="Left" Margin="190,0,0,10" VerticalAlignment="Bottom" Background="Black" BorderBrush="{x:Null}" IsTodayHighlighted="True"/>
                     <Label x:Name="To" Content="To:" HorizontalAlignment="Left" Margin="300,0,0,9" VerticalAlignment="Bottom" Foreground="White" Background="{x:Null}" Height="24"/>
                     <DatePicker x:Name="ToDatePicker"  HorizontalAlignment="Left" Margin="325,0,0,10" VerticalAlignment="Bottom" BorderBrush="{x:Null}"/>
-                    <Label x:Name="TotalPriceReport" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="120" Background="{x:Null}" Foreground="White" FontSize="14"/>
+                    <Label x:Name="TotalPriceReport" Content="Total price: " HorizontalAlignment="Right" Margin="0,0,10,6" VerticalAlignment="Bottom" Width="150" Background="{x:Null}" Foreground="White" FontSize="14"/>
                 </Grid>
             </TabItem>
         </TabControl>
